@@ -6,22 +6,22 @@ export class ActivityPubController {
   constructor(private readonly activityPubService: ActivityPubService) {}
 
   @Get('.well-known/webfinger')
-  webfinger(@Query('resource') resource: string) {
+  async webfinger(@Query('resource') resource: string) {
     return this.activityPubService.getWebFinger(resource);
   }
 
   @Get('users/:username')
-  actor(@Param('username') username: string) {
+  async actor(@Param('username') username: string) {
     return this.activityPubService.getActor(username);
   }
 
   @Get('users/:username/outbox')
-  outbox(@Param('username') username: string) {
+  async outbox(@Param('username') username: string) {
     return this.activityPubService.getOutbox(username);
   }
 
   @Post('users/:username/inbox')
-  inbox(@Param('username') username: string, @Body() activity: Record<string, unknown>) {
+  async inbox(@Param('username') username: string, @Body() activity: Record<string, unknown>) {
     return this.activityPubService.acceptInboxActivity(username, activity);
   }
 }
