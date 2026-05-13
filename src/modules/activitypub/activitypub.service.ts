@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ActivityPubService {
-  private readonly domain = 'example.social';
+  private readonly domain = 'dope.eu.org';
 
   getWebFinger(acct: string) {
     const username = acct.replace('acct:', '').split('@')[0];
