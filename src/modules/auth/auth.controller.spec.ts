@@ -15,7 +15,7 @@ describe('AuthController', () => {
           provide: PrismaService,
           useValue: {
             user: { findFirst: jest.fn(), create: jest.fn(), findUnique: jest.fn() },
-            oAuthClient: { findUnique: jest.fn(), upsert: jest.fn() },
+            oAuthClient: { findUnique: jest.fn(), upsert: jest.fn(), create: jest.fn() },
             accessToken: { findUnique: jest.fn(), create: jest.fn() },
           },
         },
