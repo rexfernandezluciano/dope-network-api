@@ -33,8 +33,9 @@ model AccessToken {
   tokenHash    String      @unique
   refreshHash  String      @unique
   scope        String
-  expiresAt    DateTime
-  revokedAt    DateTime?
+  expiresAt        DateTime
+  refreshExpiresAt DateTime
+  revokedAt        DateTime?
   createdAt    DateTime    @default(now())
 
   userId       String?
