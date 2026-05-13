@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { join } from 'path';
 
 type DbUser = {
   id: string;
@@ -25,7 +26,7 @@ export class ActivityPubService {
   };
 
   constructor() {
-    const prismaModule = require('../../../generated/prisma/client');
+    const prismaModule = require(join(process.cwd(), 'generated/prisma/client'));
     this.prisma = new prismaModule.PrismaClient();
   }
 
