@@ -1,5 +1,4 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
 
 type DbUser = {
   id: string;
@@ -20,7 +19,15 @@ type DbOutboxItem = {
 @Injectable()
 export class ActivityPubService {
   private readonly domain = process.env.ACTIVITYPUB_DOMAIN ?? 'dope.eu.org';
-  private readonly prisma = new PrismaClient();
+  private readonly prisma: {
+    $queryRaw: <T = unknown>(query: TemplateStringsArray, ...values: unknown[]) => Promise<T>;
+    $executeRaw: (query: TemplateStringsArray, ...values: unknown[]) => Promise<number>;
+  };
+
+  constructor() {
+    const prismaModule = require('../../../generated/prisma/client');
+    this.prisma = new prismaModule.PrismaClient();
+  }
 
   private actorUrl(username: string): string {
     return `https://${this.domain}/users/${username}`;
