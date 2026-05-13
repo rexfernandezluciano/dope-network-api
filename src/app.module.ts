@@ -7,9 +7,11 @@ import { PostsModule } from './modules/posts/posts.module';
 import { CommentsController } from './modules/comments/comments.controller';
 import { CommentsService } from './modules/comments/comments.service';
 import { CommentsModule } from './modules/comments/comments.module';
+import { ActivityPubModule } from './modules/activitypub/activitypub.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, PostsModule, CommentsModule],
+  imports: [PrismaModule, AuthModule, UsersModule, PostsModule, CommentsModule, ActivityPubModule],
   controllers: [AppController, CommentsController],
   providers: [AppService, CommentsService],
 })
