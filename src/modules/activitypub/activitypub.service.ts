@@ -1,5 +1,4 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
 
 type DbUser = {
   id: string;
@@ -16,6 +15,8 @@ type DbOutboxItem = {
   poll: unknown;
   createdAt: Date;
 };
+
+const { PrismaClient } = require('@prisma/client');
 
 @Injectable()
 export class ActivityPubService {
